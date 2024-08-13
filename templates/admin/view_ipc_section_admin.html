@@ -1,0 +1,55 @@
+{% extends "admin/admin_base.html"  %}
+{% block content %}
+  <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <p class="card-title">IPC section</p>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="table-responsive">
+                        <table id="example" class="display expandable-table" style="width:100%">
+                          <thead>
+                            <tr>
+                              <th>IPC Name</th>
+                              <th>Description</th>
+                              <th>Punishment</th>
+                              <th colspan="2">Action</th>
+                            </tr>
+                            {% for i in ipc %}
+                            <tr>
+                                <td>{{i.section_name}}</td>
+                                <td>{{i.description}}</td>
+                                <td>{{i.punishment}}</td>
+                            
+                                <td><a href="update_ipc_section?id={{i.id}}"><button class="btn btn-primary btn-rounded btn-fw">Update</button></a></td>
+                                <td><a href="remove_ipc_section?id={{i.id}}"><button class="btn btn-danger btn-rounded btn-fw">Remove</button></a></td>
+                          
+
+                        
+                            </tr>
+                            {% endfor %}
+                            
+        {% if messages %}
+        {% for m in messages %}
+        <script>alert("{{m}}")</script>
+        {% endfor %}
+        {% endif %}
+                          </thead>
+                      </table>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+
+                
+              </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+

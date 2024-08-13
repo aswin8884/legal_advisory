@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <!-- basic -->
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- mobile metas -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+      <!-- site metas -->
+      <title>Atema</title>
+      <meta name="keywords" content="">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <!-- bootstrap css -->
+      <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css">
+      <!-- style css -->
+      <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+      <!-- Responsive-->
+      <link rel="stylesheet" href="../static/css/responsive.css">
+      <!-- fevicon -->
+      <link rel="icon" href="../static/images/fevicon.png" type="image/gif" />
+      <!-- font css -->
+      <link href="https://fonts.googleapis.com/css2?family=Sen:wght@400;700;800&display=swap" rel="stylesheet">
+      <!-- Scrollbar Custom CSS -->
+      <link rel="stylesheet" href="../static/css/jquery.mCustomScrollbar.min.css">
+      <!-- Tweaks for older IEs-->
+      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+   </head>
+   <style>
+    .navbar-expand-lg .navbar-nav .nav-link {
+    padding: 3px 5px;
+    font-size: 16px;
+    color: black;
+    margin: 0px 6px;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    text-transform: uppercase;
+}
+.navbar-expand-lg .navbar-nav .nav-link:hover{
+    color: darkblue;
+}
+.login_bt li a {
+    float: left;
+    font-size: 18px;
+    color: rgb(0, 11, 61);
+    text-transform: uppercase;
+    padding: 0px 0px 0px 50px;
+}
+.login_bt li a:hover{
+   color: rgba(0, 0, 72, 0.434);
+}
+   </style>
+   <body>
+         <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+               <a class="navbar-brand"href="/"><img src="../static/images/logo.png"></a>
+               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+               <span class="navbar-toggler-icon"></span>
+               </button>
+               <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav mr-auto">
+                     <li class="nav-item">
+                        <a class="nav-link" href="/advocate_home">Home</a>
+                     </li>     
+                     <li class="nav-item">
+                        <a class="nav-link" href="/view_cases_advocate">Cases</a></a>
+                     </li>     
+                     <li class="nav-item">
+                        <a class="nav-link" href="/view_work_confirmation_advocate">View Cases</a></a>
+                     </li>     
+                     <li class="nav-item">
+                        <a class="nav-link" href="/view_request_from_user_advocate">User Requests</a></a>
+                     </li>     
+                     <li class="nav-item">
+                        <a class="nav-link" href="/view_feedbacks_advocate">View Feedbacks</a></a>
+                     </li>     
+                     <li class="nav-item">
+                        <a class="nav-link" href="/edit_profile_advocates">Profile</a></a>
+                     </li>     
+                  </ul>
+                  <form class="form-inline my-2 my-lg-0">
+                    <div class="login_bt">
+                       <ul>
+                          <li><a href="/">Logout</a></li>
+                          <!-- <li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li> -->
+                       </ul>
+                    </div>
+                 </form>
+              </div>
+           </nav>
+
+
+         {% block content %}
+
+         {% endblock %}

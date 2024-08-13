@@ -1,0 +1,157 @@
+{% extends "advocate/advocate_base.html" %}
+{% block content %}
+<style>
+    /* General styles */
+    .main-panel {
+        margin: 20px;
+    }
+
+    .card {
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        background: #fff;
+    }
+
+    .card-body {
+        padding: 20px;
+    }
+
+    /* Styled request card */
+    .request-card {
+        padding: 20px;
+        margin: 20px 0;
+        border-left: 6px solid #000647;
+        background-color: #f9f9f9;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .request-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 10px;
+    }
+
+    .request-header h2 {
+        font-size: 22px;
+        font-weight: bold;
+        color: #333;
+        margin: 0;
+    }
+
+    .request-status {
+        font-size: 16px;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+
+    .request-status.accepted {
+        background-color: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+    }
+
+    .request-status.pending {
+        background-color: #fff3cd;
+        color: #856404;
+        border: 1px solid #ffeeba;
+    }
+
+    .request-content {
+        margin-bottom: 10px;
+    }
+
+    .request-content p {
+        font-size: 16px;
+        color: #555;
+        margin: 5px 0;
+    }
+
+    .request-action {
+        display: flex;
+        gap: 10px;
+        justify-content: flex-end;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 8px 16px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 14px;
+        text-align: center;
+        transition: background-color 0.3s ease;
+        border: none;
+        cursor: pointer;
+    }
+
+    .btn-success {
+        background-color: #28a745;
+        color: white;
+    }
+
+    .btn-success:hover {
+        background-color: #218838;
+    }
+
+    .btn-danger {
+        background-color: #d9534f;
+        color: white;
+    }
+
+    .btn-danger:hover {
+        background-color: #c9302c;
+    }
+</style>
+
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h1 class="card-title">View Cases</h1>
+                        <div class="row">
+                            <div class="col-12">
+                                {% if work %}
+                                {% for w in work %}
+                                <div class="request-card">
+                                    <div class="request-header">
+                                        <h2>{{ w.case }}</h2>
+                                        <span class="request-status 
+                                            {% if w.status == True %}accepted{% else %}pending{% endif %}">
+                                            {% if w.status == True %}
+                                                Accepted by {{ w.user_id.name }} on {{ w.accepted_date_user }}
+                                            {% else %}
+                                                Pending
+                                            {% endif %}
+                                        </span>
+                                    </div>
+                                    <div class="request-content">
+                                        <p><strong>User:</strong> {{ w.user_id.name }}</p>
+                                        <p><strong>Posted Date:</strong> {{ w.posted_date }}</p>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                                {% else %}
+                                <h1 style="text-align: center;">No cases found</h1>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if messages %}
+{% for m in messages %}
+<script>alert("{{m}}")</script>
+{% endfor %}
+{% endif %}
+{% endblock %}

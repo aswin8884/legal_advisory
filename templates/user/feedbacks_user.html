@@ -1,0 +1,112 @@
+{% extends "user/user_base.html" %}
+{% block content %}
+
+<style>
+.contact_section {
+    padding: 50px 0;
+    background-color: #f8f9fa;
+}
+
+.contact_taital {
+    color: #160064;
+    text-transform: capitalize;
+    margin-bottom: 30px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.map_form_container {
+    background: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.mail_text, .massage-bt, .drop {
+    width: 100%;
+    padding: 10px 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+}
+
+.massage-bt {
+    resize: vertical;
+}
+
+.drop {
+    display: block;
+}
+
+.drop, .mail_text, .massage-bt {
+    font-size: 16px;
+    color: #495057;
+}
+
+button[type="submit"] {
+    padding: 10px;
+    background-color: #dc3545;
+    border: none;
+    border-radius: .25rem;
+    font-size: 18px;
+    color: #fff;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #c82333;
+}
+</style>
+
+<div class="contact_section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h1 class="contact_taital">Feedback</h1>
+            </div>
+        </div>
+        <div class="contact_section_2">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="map_form_container">
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <input type="text" class="mail_text" placeholder="Feedback" name="feedback">
+                            <textarea class="massage-bt" placeholder="Description" rows="5" id="comment" name="description"></textarea>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="advocate_id" class="form-label">Lawyer Name</label>
+                                    <select class="drop form-control" name="advocate_id" id="advocate_id">
+                                        {% for a in advocate %}
+                                        <option value="{{ a.id }}">{{ a.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="rating" class="form-label">Rating</label>
+                                    <select class="drop form-control" name="rating" id="rating">
+                                        <option value="1">⭐</option>
+                                        <option value="2">⭐⭐</option>
+                                        <option value="3">⭐⭐⭐</option>
+                                        <option value="4">⭐⭐⭐⭐</option>
+                                        <option value="5">⭐⭐⭐⭐⭐</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-danger btn-rounded btn-lg btn-fw mt-4">Send</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if messages %}
+{% for m in messages %}
+<script>alert("{{ m }}")</script>
+{% endfor %}
+{% endif %}
+{% endblock %}

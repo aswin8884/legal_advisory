@@ -1,0 +1,84 @@
+{% extends "admin/admin_base.html"  %}
+{% block content %}
+  <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <p class="card-title">Advanced Table</p>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="table-responsive">
+                        <table id="example" class="display expandable-table" style="width:100%">
+                          <thead>
+                            <tr>
+                              <th>Profile</th>
+                              <th>Advocate Name</th>
+                              <th>Contact</th>
+                              <th>Address</th>
+                              <th>Gender</th>
+                              <th>Advocate type</th>
+                              <th>Id proof</th>
+                              <th>Educational certificate</th>
+                              <th>Licence</th>
+                              <th colspan="2">Action</th>
+                            </tr>
+                            {% for a in advocates %}
+                            <tr>
+                             <td><img src="../static/media/{{a.profile_picture}}" height="52px" width="52px"></td>
+                                <td>{{a.name}}</td>
+                                <td>{{a.contact}}</td>
+                                <td>{{a.address}}</td>
+                                <td>{{a.gender}}</td>
+                                <td>{{a.advocate_type}}</td>
+
+                                <!-- <td><iframe src="../static/media/{{a.id_proof}}" frameborder="0"></iframe></td> -->
+                                <td><a href="../static/media/{{a.id_proof}}">
+                                <button type="button" class="btn btn-outline-info btn-icon-text">Id proof
+                                <i class="ti-printer btn-icon-append">
+                                </i></button></a></td>
+
+
+                                <td><a href="../static/media/{{a.degree_cerificate}}">
+                                <button type="button" class="btn btn-outline-info btn-icon-text">Educational certificate
+                                <i class="ti-printer btn-icon-append">
+                                </i></button></a></td>
+
+                                <td><a href="../static/media/{{a.licence}}">
+                                <button type="button" class="btn btn-outline-info btn-icon-text">Licence
+                                <i class="ti-printer btn-icon-append">
+                                </i></button></a></td>
+
+                                {% if a.approved == False %}
+                                <td><a href="advocate_approval?id={{a.id}}"><button class="btn btn-success btn-rounded btn-fw">Approve</button></a></td>
+                                <td><a href="advocate_reject?id={{a.id}}"><button class="btn btn-danger btn-rounded btn-fw">Reject</button></a></td>
+                                {% elif a.approved == True %}
+                                <td>Approved</td>
+                                {% endif %}
+
+                        
+                            </tr>
+                            {% endfor %}
+                            
+        {% if messages %}
+        {% for m in messages %}
+        <script>alert("{{m}}")</script>
+        {% endfor %}
+        {% endif %}
+                          </thead>
+                      </table>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+
+                
+              </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+

@@ -1,0 +1,181 @@
+{% extends "user/user_base.html" %}
+{% block content %}
+<style>
+    /* General styles */
+    .main-panel {
+        margin: 20px;
+    }
+
+    .card {
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        background: #fff;
+        margin-bottom: 20px;
+    }
+
+    .card-body {
+        padding: 20px;
+    }
+
+    .card-title {
+        font-size: 26px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    .case-card {
+        padding: 20px;
+        margin-bottom: 20px;
+        border-left: 6px solid #000647;
+        background-color: #f9f9f9;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .case-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 10px;
+    }
+
+    .case-header h2 {
+        font-size: 22px;
+        font-weight: bold;
+        color: #333;
+        margin: 0;
+    }
+
+    .case-image img {
+        width: 100%;
+        max-width: 240px;
+        height: auto;
+        margin-bottom: 15px;
+        border-radius: 5px;
+    }
+
+    .case-content p {
+        font-size: 16px;
+        color: #555;
+        margin: 5px 0;
+    }
+
+    .case-status {
+        font-size: 16px;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-weight: bold;
+        display: inline-block;
+    }
+
+    .case-status.handled {
+        background-color: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+    }
+
+    .case-status.pending {
+        background-color: #fff3cd;
+        color: #856404;
+        border: 1px solid #ffeeba;
+    }
+
+    .case-action {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 8px 16px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 14px;
+        text-align: center;
+        transition: background-color 0.3s ease;
+        border: none;
+        cursor: pointer;
+    }
+
+    .btn-danger {
+        background-color: #d9534f;
+        color: white;
+    }
+
+    .btn-danger:hover {
+        background-color: #c9302c;
+    }
+
+    /* Responsive styling */
+    @media (max-width: 768px) {
+        .case-card {
+            padding: 15px;
+        }
+
+        .case-header h2 {
+            font-size: 20px;
+        }
+
+        .case-content p {
+            font-size: 14px;
+        }
+    }
+</style>
+
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h1 class="card-title">View Posted Cases</h1>
+                        <div class="row">
+                            <div class="col-12">
+                                {% if case %}
+                                {% for c in case %}
+                                <div class="case-card">
+                                    <div class="case-header">
+                                        <h2>{{ c.case }}</h2>
+                                        <span class="case-status 
+                                            {% if c.status == True %}handled{% else %}pending{% endif %}">
+                                            {% if c.status == True %}
+                                                Handled by Adv.{{ c.advocate_id.name }}
+                                            {% else %}
+                                                Pending
+                                            {% endif %}
+                                        </span>
+                                    </div>
+                                    <div class="case-image">
+                                        <img src="../static/media/{{ c.image }}" alt="Case Image">
+                                    </div>
+                                    <div class="case-content">
+                                        <p><strong>Description:</strong> {{ c.description }}</p>
+                                    </div>
+                                    <div class="case-action">
+                                        <a href="delete_post_cases_user?id={{c.id}}">
+                                            <button class="btn btn-danger">Delete</button>
+                                        </a>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                                 {% else %}
+                                <h1 style="text-align: center;">No cases found</h1>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% if messages %}
+    {% for m in messages %}
+    <script>alert("{{m}}")</script>
+    {% endfor %}
+    {% endif %}
+</div>
+{% endblock %}

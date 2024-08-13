@@ -1,0 +1,57 @@
+{% extends "admin/admin_base.html"  %}
+{% block content %}
+  <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <p class="card-title">Advanced Table</p>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="table-responsive">
+                        <table id="example" class="display expandable-table" style="width:100%">
+                          <thead>
+                            <tr>
+                              <th>Profile</th>
+                              <th>Advocate Name</th>
+                              <th>Contact</th>
+                              <th>Address</th>
+                              <th>Gender</th>
+                              <th>Advocate type</th>
+                              <th>Action</th>
+                            </tr>
+                            {% for a in advocates %}
+    
+                            <tr>
+                             <td><img src="../static/media/{{a.profile_picture}}" height="52px" width="52px"></td>
+                                <td>{{a.name}}</td>
+                                <td>{{a.contact}}</td>
+                                <td>{{a.address}}</td>
+                                <td>{{a.gender}}</td>
+                                <td>{{a.advocate_type}}</td>
+                                <td><a href="remove_advocate?id={{a.id}}"><button class="btn btn-danger btn-rounded btn-fw">Remove</button></a></td>
+                            </tr>
+                            {% endfor %}
+                            
+        {% if messages %}
+        {% for m in messages %}
+        <script>alert("{{m}}")</script>
+        {% endfor %}
+        {% endif %}
+                          </thead>
+                      </table>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+
+                
+              </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+

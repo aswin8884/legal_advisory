@@ -1,0 +1,97 @@
+{% extends "user/user_base.html" %}
+{% block content %}
+<style>
+/* General styles */
+.main-panel {
+    margin: 20px;
+}
+
+.card {
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: #fff;
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+/* Feedback card */
+.feedback-card {
+    padding: 15px;
+    margin: 10px 0;
+    border-left: 4px solid #000647;
+    background-color: #f9f9f9;
+}
+
+.feedback-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.feedback-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.feedback-author {
+    font-size: 14px;
+    color: #555;
+}
+
+.feedback-content {
+    font-size: 16px;
+    color: #333;
+}
+</style>
+
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h1 class="card-title">View Feedbacks</h1>
+                        <div class="row">
+                            <div class="col-12">
+                                {% for f in feed %}
+                                <div class="feedback-card">
+                                    <div class="feedback-header">
+                                        <h3 style="text-transform: capitalize;"><b>{{ f.feedback }}</b></h3>
+                       
+                                        <span class="feedback-author">Posted by {{ f.user_id.name }} on {{ f.posted_date }}</span>
+                                    </div>
+                                    <div class="feedback-content">  
+                                      {% if f.rating == 1 %}
+                                       <h1>⭐</h1>  
+                                       {% elif f.rating == 2 %} 
+                                       <h1>⭐⭐</h1>  
+                                       {% elif f.rating == 3 %} 
+                                       <h1>⭐⭐⭐</h1>  
+                                       {% elif f.rating == 4 %} 
+                                       <h1>⭐⭐⭐⭐</h1>  
+                                       {% elif f.rating == 5 %} 
+                                       <h1>⭐⭐⭐⭐⭐</h1> 
+                                       {% endif %} 
+                                        <h2 class="feedback-title">About Adv.{{ f.advocate_id.name }}</h2>
+                                        <h4 style="text-transform: capitalize;">{{ f.description }}</h4>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if messages %}
+{% for m in messages %}
+<script>alert("{{m}}")</script>
+{% endfor %}
+{% endif %}
+
+{% endblock %}

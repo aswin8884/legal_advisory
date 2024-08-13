@@ -1,0 +1,69 @@
+{% extends "admin/admin_base.html"  %}
+{% block content %}
+  <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <p class="card-title">Advanced Table</p>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="table-responsive">
+                        <table id="example" class="display expandable-table" style="width:100%">
+                          <thead>
+                            <tr>
+
+                              <th>Advocate Name</th>
+                              <th>Advocate Type</th>
+                              <th>User Name</th>
+                              <th>Title</th>
+                              <th>Feedback</th>
+                              <th>Rating</th>
+                              <th>Posted Date</th>
+                            
+                            </tr>
+                            {% for f in feed %}
+    
+                            <tr>
+                                <td>{{f.advocate_id.name}}</td>
+                                <td>{{f.advocate_id.advocate_type}}</td>
+                                <td>{{f.user_id.name}}</td>
+                                <td>{{f.feedback}}</td>
+                                <td>{{f.description}}</td>
+                                <td> {% if f.rating == 1 %}
+                                  <p>⭐</p>  
+                                  {% elif f.rating == 2 %} 
+                                  <p>⭐⭐</p>   
+                                  {% elif f.rating == 3 %} 
+                                  <p>⭐⭐⭐</p>   
+                                  {% elif f.rating == 4 %} 
+                                  <p>⭐⭐⭐⭐</p>  
+                                  {% elif f.rating == 5 %} 
+                                  <p>⭐⭐⭐⭐⭐</p> 
+                                  {% endif %} </td>
+                                <td>{{f.posted_date}}</td>
+                    
+                            </tr>
+                            {% endfor %}
+                            
+        {% if messages %}
+        {% for m in messages %}
+        <script>alert("{{m}}")</script>
+        {% endfor %}
+        {% endif %}
+                          </thead>
+                      </table>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+
+                
+              </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

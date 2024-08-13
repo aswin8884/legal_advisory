@@ -1,0 +1,30 @@
+{% extends "advocate/advocate_base.html"  %}
+{% block content %}
+       <div class="contact_section_2">
+          <div class="row">
+             <div class="col-md-12">
+                <div class="mail_section map_form_container">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input type="text" class="mail_text" placeholder="Name" value="{{advocate.name}}" name="name">
+                        <input type="number" class="mail_text" value="{{advocate.contact}}" placeholder="Phone Number" name="contact"> 
+                        <input type="text" class="mail_text" value="{{advocate.address}}" placeholder="Address" name="address"> 
+                        <input type="number" class="mail_text" value="{{advocate.fees}}" placeholder="Fees" name="fees"> 
+                        <input type="number" class="mail_text" value="{{advocate.cases_won}}" placeholder="Total Number Of Cases Won" name="cases_won"> 
+                        <input type="file" class="mail_text" placeholder="Fees" name="profile_picture"> 
+                        
+                    <button type="submit"  class="btn btn-success btn-lg btn-rounded btn-fw">Update</button>
+                   </form>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+ </div>
+ <!-- contact section end -->
+ {% if messages %}
+ {% for m in messages %}
+ <script>alert("{{m}}")</script>
+ {% endfor %}
+ {% endif %}
+{% endblock %}

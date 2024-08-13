@@ -1,0 +1,103 @@
+
+{% extends "user/user_base.html" %}
+{% block content %}
+<style>
+    /* General styles */
+.main-panel {
+    margin: 20px;
+}
+
+.card {
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: #fff;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+/* Styled table */
+.styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 20px;
+    width: 100%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.styled-table thead tr {
+    background-color: #000647;
+    color: #ffffff;
+    text-align: left;
+}
+
+.styled-table th, .styled-table td {
+    padding: 12px 15px;
+    border: 1px solid #dddddd;
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}
+
+/* Responsive table */
+@media (max-width: 768px) {
+    .table-responsive {
+        overflow-x: auto;
+    }
+}
+</style>
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h1 class="card-title">IPC Sections</h1>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="table-responsive">
+                                    <table id="example" class="styled-table">
+                                        <thead>
+                                            <tr>
+                                                <th>IPC Name</th>
+                                                <th>Description</th>
+                                                <th>Punishment</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for i in ipc %}
+                                            <tr>
+                                                <td>{{ i.section_name }}</td>
+                                                <td>{{ i.description }}</td>
+                                                <td>{{ i.punishment }}</td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+

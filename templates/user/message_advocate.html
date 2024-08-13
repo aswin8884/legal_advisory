@@ -1,0 +1,52 @@
+{% extends "user/user_base.html"  %}
+{% block content %}
+<div class="contact_section layout_padding">
+    <div class="container">
+       <div class="row">
+          <div class="col-sm-12">
+             <h1 style="color: #160064;text-transform: capitalize;" class="contact_taital">Make a request</h1>
+          </div>
+       </div>
+       <div class="contact_section_2">
+          <div class="row">
+             <div class="col-md-12">
+                <div class="mail_section map_form_container">
+                   <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                      <input type="text" class="mail_text" placeholder="Case" name="case">
+                      <textarea class="massage-bt" placeholder="Description" rows="5" id="comment" name="description"></textarea>
+                      <br>
+                      <br>
+                          <button type="submit" class="btn btn-success btn-rounded btn-lg btn-fw">Send</button>
+   
+                   </form>
+                   <br>
+                   <br>
+                   <br>
+                   <br>
+                   <br>
+                   <br>
+                   <br>
+                   <br>
+                   <br>
+                   <br>
+                   <br>
+                   <br>
+                   <br>
+                   <br>
+                   <br>
+                   <br>
+                   <br>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+ </div>
+ <!-- contact section end -->
+ {% if messages %}
+ {% for m in messages %}
+ <script>alert("{{m}}")</script>
+ {% endfor %}
+ {% endif %}
+{% endblock %}
